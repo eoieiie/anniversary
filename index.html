@@ -384,6 +384,42 @@
     margin: 0 auto 20px;
   }
 
+  /* ── SHAKE BUTTON ── */
+  .btn-shake {
+    position: fixed;
+    bottom: 36px;
+    left: 28px;
+    background: var(--blush);
+    color: var(--deep);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 18px;
+    font-family: 'Gowun Dodum', serif;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(122,62,58,0.2);
+    z-index: 100;
+    display: none;
+  }
+  .btn-shake.visible { display: block; }
+
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    15%      { transform: translateX(-10px) rotate(-2deg); }
+    30%      { transform: translateX(10px) rotate(2deg); }
+    45%      { transform: translateX(-8px) rotate(-1deg); }
+    60%      { transform: translateX(8px) rotate(1deg); }
+    75%      { transform: translateX(-5px); }
+    90%      { transform: translateX(5px); }
+  }
+  .shaking { animation: shake 0.6s ease; }
+
+  /* ── EMOJI BURST ── */
+  @keyframes burst-fly {
+    0%   { transform: translate(0,0) scale(0.5) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--tr)); opacity: 0; }
+  }
+
   /* confetti on ending */
   .confetti-piece {
     position: fixed;
@@ -501,6 +537,9 @@
 <!-- NAV BUTTON -->
 <button class="nav-btn" id="navBtn" onclick="nextScreen()">→</button>
 
+<!-- SHAKE BUTTON -->
+<button class="btn-shake" id="shakeBtn" onclick="shakeScreen()">사랑해</button>
+
 
 
 <script>
@@ -565,9 +604,41 @@ function updateUI() {
   } else {
     btn.classList.remove('visible');
   }
+
+  // show shake button on letter screens 3–5
+  const shakeBtn = document.getElementById('shakeBtn');
+  if (current >= 3 && current <= 5) {
+    shakeBtn.classList.add('visible');
+  } else {
+    shakeBtn.classList.remove('visible');
+  }
 }
 
-// ── CONFETTI ──
+// ── SHAKE SCREEN ──
+function shakeScreen() {
+  const el = document.createElement('div');
+  el.textContent = '내가 더';
+  const size = 10 + Math.random() * 22;
+  const rotate = -40 + Math.random() * 80;
+  el.style.cssText = `
+    position: fixed;
+    left: ${15 + Math.random() * 65}vw;
+    top: ${15 + Math.random() * 55}vh;
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: ${size}px;
+    font-weight: 700;
+    color: var(--rose);
+    pointer-events: none;
+    z-index: 400;
+    opacity: 1;
+    transform: rotate(${rotate}deg);
+    transition: opacity 0.6s ease;
+  `;
+  document.body.appendChild(el);
+  setTimeout(() => el.style.opacity = '0', 400);
+  setTimeout(() => el.remove(), 1100);
+}
+
 function launchConfetti() {
   const confColors = ['#f2c4b8','#d4837a','#c9a96e','#f8ddd6','#7a3e3a','#fce4dc'];
   for (let i = 0; i < 60; i++) {
