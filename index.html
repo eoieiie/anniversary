@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -17,414 +16,408 @@
     --petal: #f8ddd6;
   }
 
-- { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-body {
-background: var(–cream);
-font-family: ‘Gowun Dodum’, serif;
-color: var(–ink);
-overflow: hidden;
-height: 100dvh;
-width: 100vw;
-}
+  body {
+    background: var(--cream);
+    font-family: 'Gowun Dodum', serif;
+    color: var(--ink);
+    overflow: hidden;
+    height: 100dvh;
+    width: 100vw;
+  }
 
-/* ── PETALS ── */
-.petal-layer {
-position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
-}
-.petal {
-position: absolute;
-width: 10px; height: 14px;
-border-radius: 60% 40% 60% 40% / 50% 50% 50% 50%;
-opacity: 0;
-animation: fall linear infinite;
-}
-@keyframes fall {
-0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
-10%  { opacity: 0.7; }
-90%  { opacity: 0.5; }
-100% { transform: translateY(110dvh) rotate(360deg) translateX(40px); opacity: 0; }
-}
+  /* ── PETALS ── */
+  .petal-layer {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .petal {
+    position: absolute;
+    width: 10px; height: 14px;
+    border-radius: 60% 40% 60% 40% / 50% 50% 50% 50%;
+    opacity: 0;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(110dvh) rotate(360deg) translateX(40px); opacity: 0; }
+  }
 
-/* ── SCREENS ── */
-.screen {
-position: absolute; inset: 0;
-display: flex; flex-direction: column;
-align-items: center; justify-content: center;
-padding: 32px 28px;
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.7s ease;
-z-index: 1;
-}
-.screen.active {
-opacity: 1;
-pointer-events: all;
-}
+  /* ── SCREENS ── */
+  .screen {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 32px 28px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s ease;
+    z-index: 1;
+  }
+  .screen.active {
+    opacity: 1;
+    pointer-events: all;
+  }
 
-/* ── SCREEN 1: TITLE ── */
-#s1 {
-text-align: center;
-gap: 0;
-}
-.envelope-wrap {
-margin-bottom: 36px;
-animation: float 3s ease-in-out infinite;
-}
-@keyframes float {
-0%,100% { transform: translateY(0); }
-50%      { transform: translateY(-10px); }
-}
-.envelope {
-width: 100px; height: 72px;
-background: var(–petal);
-border-radius: 4px;
-position: relative;
-box-shadow: 0 8px 32px rgba(122,62,58,0.18);
-overflow: hidden;
-}
-.envelope::before {
-content: ‘’;
-position: absolute; top: 0; left: 0; right: 0;
-border-left: 50px solid transparent;
-border-right: 50px solid transparent;
-border-top: 38px solid var(–blush);
-}
-.envelope::after {
-content: ‘’;
-position: absolute; bottom: 0; left: 0; right: 0;
-border-left: 50px solid transparent;
-border-right: 50px solid transparent;
-border-bottom: 32px solid var(–rose);
-opacity: 0.5;
-}
-.envelope-heart {
-position: absolute;
-top: 50%; left: 50%;
-transform: translate(-50%, -50%);
-font-size: 20px;
-z-index: 2;
-margin-top: 8px;
-}
+  /* ── SCREEN 1: TITLE ── */
+  #s1 {
+    text-align: center;
+    gap: 0;
+  }
+  .envelope-wrap {
+    margin-bottom: 36px;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+  }
+  .envelope {
+    width: 100px; height: 72px;
+    background: #f8ddd6;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(122,62,58,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .envelope svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+  .envelope-heart {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    z-index: 2;
+    margin-top: 8px;
+  }
 
-.title-label {
-font-family: ‘Nanum Myeongjo’, serif;
-font-size: 13px;
-letter-spacing: 1px;
-color: var(–rose);
-margin-bottom: 14px;
-}
-.title-main {
-font-family: ‘Nanum Myeongjo’, serif;
-font-size: 36px;
-font-weight: 800;
-color: var(–deep);
-line-height: 1.2;
-margin-bottom: 10px;
-}
-.title-sub {
-font-size: 14px;
-color: var(–rose);
-margin-bottom: 48px;
-line-height: 1.8;
-}
-.btn-open, .btn-replay {
-display: inline-block;
-background: #7a3e3a;
-color: #fdf6ef;
-border: none;
-border-radius: 50px;
-padding: 16px 40px;
-font-family: ‘Gowun Dodum’, serif;
-font-size: 15px;
-letter-spacing: 1px;
-cursor: pointer;
-box-shadow: 0 4px 20px rgba(122,62,58,0.3);
-text-decoration: none;
--webkit-appearance: none;
-}
-.btn-open:active, .btn-replay:active { opacity: 0.85; }
+  .title-label {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 13px;
+    letter-spacing: 0;
+    color: var(--rose);
+    margin-bottom: 14px;
+  }
+  .title-main {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--deep);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .title-sub {
+    font-size: 14px;
+    color: var(--rose);
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+  .btn-open, .btn-replay {
+    display: inline-block;
+    background: #7a3e3a;
+    color: #fdf6ef;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 40px;
+    font-family: 'Gowun Dodum', serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(122,62,58,0.3);
+    text-decoration: none;
+    -webkit-appearance: none;
+  }
+  .btn-open:active, .btn-replay:active { opacity: 0.85; }
 
-/* ── SCREEN 2: COUNTER ── */
-#s2 { gap: 0; text-align: center; }
+  /* ── SCREEN 2: COUNTER ── */
+  #s2 { gap: 0; text-align: center; }
 
-.counter-deco {
-font-size: 40px;
-margin-bottom: 20px;
-animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-0%,100% { transform: scale(1); }
-50%      { transform: scale(1.12); }
-}
+  .counter-deco {
+    font-size: 40px;
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50%      { transform: scale(1.12); }
+  }
 
-.counter-label {
-font-family: ‘Nanum Myeongjo’, serif;
-font-size: 13px;
-letter-spacing: 4px;
-color: var(–rose);
-margin-bottom: 12px;
-}
-.counter-number {
-font-family: ‘Nanum Myeongjo’, serif;
-font-size: 72px;
-font-weight: 800;
-color: var(–deep);
-line-height: 1;
-margin-bottom: 6px;
-}
-.counter-unit {
-font-size: 18px;
-color: var(–rose);
-font-family: ‘Nanum Myeongjo’, serif;
-margin-bottom: 28px;
-}
-.counter-since {
-font-size: 13px;
-color: var(–gold);
-letter-spacing: 2px;
-margin-bottom: 48px;
-}
-.counter-stats {
-display: flex;
-gap: 20px;
-margin-bottom: 52px;
-justify-content: center;
-}
-.stat {
-background: var(–petal);
-border-radius: 14px;
-padding: 14px 18px;
-text-align: center;
-box-shadow: 0 2px 12px rgba(122,62,58,0.1);
-}
-.stat-num {
-font-family: ‘Nanum Myeongjo’, serif;
-font-size: 22px;
-font-weight: 700;
-color: var(–deep);
-}
-.stat-label {
-font-size: 11px;
-color: var(–rose);
-margin-top: 2px;
-letter-spacing: 1px;
-}
+  .counter-label {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 13px;
+    letter-spacing: 0;
+    color: var(--rose);
+    margin-bottom: 12px;
+  }
+  .counter-number {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--deep);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .counter-unit {
+    font-size: 18px;
+    color: var(--rose);
+    font-family: 'Nanum Myeongjo', serif;
+    margin-bottom: 28px;
+  }
+  .counter-since {
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 48px;
+  }
+  .counter-stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 52px;
+    justify-content: center;
+  }
+  .stat {
+    background: var(--petal);
+    border-radius: 14px;
+    padding: 14px 18px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(122,62,58,0.1);
+  }
+  .stat-num {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--deep);
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--rose);
+    margin-top: 2px;
+    letter-spacing: 1px;
+  }
 
-/* ── SCREEN 3-5: LETTER PAGES ── */
-.letter-page {
-width: 100%;
-max-width: 380px;
-position: relative;
-}
-.letter-card {
-background: white;
-border-radius: 18px;
-padding: 36px 30px 28px;
-box-shadow: 0 8px 40px rgba(122,62,58,0.13), 0 2px 8px rgba(122,62,58,0.07);
-position: relative;
-overflow: hidden;
-min-height: 360px;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-}
-.letter-card::before {
-content: ‘’;
-position: absolute;
-top: 0; left: 0; right: 0;
-height: 4px;
-background: linear-gradient(90deg, var(–blush), var(–rose), var(–gold));
-}
-.letter-page-num {
-font-size: 11px;
-letter-spacing: 3px;
-color: var(–blush);
-margin-bottom: 20px;
-text-align: center;
-}
-.letter-quote {
-font-family: ‘Nanum Myeongjo’, serif;
-font-size: 22px;
-font-weight: 700;
-color: var(–deep);
-line-height: 1.5;
-margin-bottom: 18px;
-}
-.letter-quote span {
-color: var(–rose);
-}
-.letter-body {
-font-size: 14px;
-line-height: 1.95;
-color: #4a2e2a;
-flex: 1;
-}
-.letter-deco {
-font-size: 28px;
-text-align: right;
-margin-top: 16px;
-opacity: 0.6;
-}
+  /* ── SCREEN 3-5: LETTER PAGES ── */
+  .letter-page {
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+  }
+  .letter-card {
+    background: white;
+    border-radius: 18px;
+    padding: 36px 30px 28px;
+    box-shadow: 0 8px 40px rgba(122,62,58,0.13), 0 2px 8px rgba(122,62,58,0.07);
+    position: relative;
+    overflow: hidden;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .letter-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blush), var(--rose), var(--gold));
+  }
+  .letter-page-num {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--blush);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .letter-quote {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--deep);
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+  .letter-quote span {
+    color: var(--rose);
+  }
+  .letter-body {
+    font-size: 14px;
+    line-height: 1.95;
+    color: #4a2e2a;
+    flex: 1;
+  }
+  .letter-deco {
+    font-size: 28px;
+    text-align: right;
+    margin-top: 16px;
+    opacity: 0.6;
+  }
 
-/* ── SCREEN 6: ENDING ── */
-#s6 { text-align: center; gap: 0; }
+  /* ── SCREEN 6: ENDING ── */
+  #s6 { text-align: center; gap: 0; }
 
-.ending-hearts {
-font-size: 48px;
-margin-bottom: 24px;
-animation: heartbeat 1.5s ease-in-out infinite;
-}
-@keyframes heartbeat {
-0%,100% { transform: scale(1); }
-14%      { transform: scale(1.15); }
-28%      { transform: scale(1); }
-42%      { transform: scale(1.1); }
-70%      { transform: scale(1); }
-}
-.ending-title {
-font-family: ‘Nanum Myeongjo’, serif;
-font-size: 28px;
-font-weight: 800;
-color: var(–deep);
-margin-bottom: 14px;
-line-height: 1.4;
-}
-.ending-body {
-font-size: 14px;
-color: var(–rose);
-line-height: 2;
-margin-bottom: 36px;
-}
-.ending-sig {
-font-family: ‘Nanum Myeongjo’, serif;
-font-size: 18px;
-color: var(–gold);
-font-weight: 700;
-margin-bottom: 48px;
-}
+  .ending-hearts {
+    font-size: 48px;
+    margin-bottom: 24px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    14%      { transform: scale(1.15); }
+    28%      { transform: scale(1); }
+    42%      { transform: scale(1.1); }
+    70%      { transform: scale(1); }
+  }
+  .ending-title {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--deep);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .ending-body {
+    font-size: 14px;
+    color: var(--rose);
+    line-height: 2;
+    margin-bottom: 36px;
+  }
+  .ending-sig {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 18px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 48px;
+  }
 
-/* ── NAV BUTTON ── */
-.nav-btn {
-position: fixed;
-bottom: 36px;
-right: 28px;
-width: 52px; height: 52px;
-border-radius: 50%;
-background: var(–deep);
-color: white;
-border: none;
-font-size: 20px;
-cursor: pointer;
-box-shadow: 0 4px 20px rgba(122,62,58,0.35);
-display: none;
-align-items: center;
-justify-content: center;
-transition: transform 0.2s;
-z-index: 100;
-}
-.nav-btn.visible { display: flex; }
-.nav-btn:active { transform: scale(0.92); }
 
-/* ── PROGRESS DOTS ── */
-.dots {
-position: fixed;
-bottom: 44px;
-left: 50%;
-transform: translateX(-50%);
-display: flex;
-gap: 7px;
-z-index: 100;
-display: none;
-}
-.dots.visible { display: flex; }
-.dot {
-width: 6px; height: 6px;
-border-radius: 50%;
-background: var(–blush);
-transition: all 0.3s;
-}
-.dot.active {
-background: var(–deep);
-width: 18px;
-border-radius: 3px;
-}
+  /* ── NAV BUTTON ── */
+  .nav-btn {
+    position: fixed;
+    bottom: 36px;
+    right: 28px;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--deep);
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(122,62,58,0.35);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    z-index: 100;
+  }
+  .nav-btn.visible { display: flex; }
+  .nav-btn:active { transform: scale(0.92); }
 
-/* ── SLIDE ANIMATION ── */
-.screen { transition: opacity 0.6s ease, transform 0.6s ease; }
-.screen.slide-out-left { transform: translateX(-30px); }
-.screen.slide-in-right { transform: translateX(30px); }
+  /* ── PROGRESS DOTS ── */
+  .dots {
+    position: fixed;
+    bottom: 44px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 7px;
+    z-index: 100;
+    display: none;
+  }
+  .dots.visible { display: flex; }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blush);
+    transition: all 0.3s;
+  }
+  .dot.active {
+    background: var(--deep);
+    width: 18px;
+    border-radius: 3px;
+  }
 
-/* ── DECORATIVE LINES ── */
-.deco-line {
-width: 40px; height: 1px;
-background: var(–blush);
-margin: 0 auto 20px;
-}
+  /* ── SLIDE ANIMATION ── */
+  .screen { transition: opacity 0.6s ease, transform 0.6s ease; }
+  .screen.slide-out-left { transform: translateX(-30px); }
+  .screen.slide-in-right { transform: translateX(30px); }
 
-/* ── SHAKE BUTTON ── */
-.btn-shake {
-position: fixed;
-bottom: 36px;
-left: 28px;
-background: var(–blush);
-color: var(–deep);
-border: none;
-border-radius: 50px;
-padding: 12px 18px;
-font-family: ‘Gowun Dodum’, serif;
-font-size: 13px;
-cursor: pointer;
-box-shadow: 0 4px 16px rgba(122,62,58,0.2);
-z-index: 100;
-display: none;
-}
-.btn-shake.visible { display: block; }
+  /* ── DECORATIVE LINES ── */
+  .deco-line {
+    width: 40px; height: 1px;
+    background: var(--blush);
+    margin: 0 auto 20px;
+  }
 
-@keyframes shake {
-0%,100% { transform: translateX(0); }
-15%      { transform: translateX(-10px) rotate(-2deg); }
-30%      { transform: translateX(10px) rotate(2deg); }
-45%      { transform: translateX(-8px) rotate(-1deg); }
-60%      { transform: translateX(8px) rotate(1deg); }
-75%      { transform: translateX(-5px); }
-90%      { transform: translateX(5px); }
-}
-.shaking { animation: shake 0.6s ease; }
+  /* ── SHAKE BUTTON ── */
+  .btn-shake {
+    position: fixed;
+    bottom: 36px;
+    left: 28px;
+    background: var(--blush);
+    color: var(--deep);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 18px;
+    font-family: 'Gowun Dodum', serif;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(122,62,58,0.2);
+    z-index: 100;
+    display: none;
+  }
+  .btn-shake.visible { display: block; }
 
-/* ── EMOJI BURST ── */
-@keyframes burst-fly {
-0%   { transform: translate(0,0) scale(0.5) rotate(0deg); opacity: 1; }
-100% { transform: translate(var(–tx), var(–ty)) scale(1.2) rotate(var(–tr)); opacity: 0; }
-}
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    15%      { transform: translateX(-10px) rotate(-2deg); }
+    30%      { transform: translateX(10px) rotate(2deg); }
+    45%      { transform: translateX(-8px) rotate(-1deg); }
+    60%      { transform: translateX(8px) rotate(1deg); }
+    75%      { transform: translateX(-5px); }
+    90%      { transform: translateX(5px); }
+  }
+  .shaking { animation: shake 0.6s ease; }
 
-/* confetti on ending */
-.confetti-piece {
-position: fixed;
-width: 8px; height: 8px;
-border-radius: 2px;
-opacity: 0;
-pointer-events: none;
-z-index: 200;
-}
-@keyframes confetti-fall {
-0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
-100% { transform: translateY(110dvh) rotate(720deg); opacity: 0; }
-}
+  /* ── EMOJI BURST ── */
+  @keyframes burst-fly {
+    0%   { transform: translate(0,0) scale(0.5) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--tr)); opacity: 0; }
+  }
+
+  /* confetti on ending */
+  .confetti-piece {
+    position: fixed;
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 200;
+  }
+  @keyframes confetti-fall {
+    0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110dvh) rotate(720deg); opacity: 0; }
+  }
 </style>
-
 </head>
 <body>
 
 <!-- PETAL LAYER -->
-
 <div class="petal-layer" id="petals"></div>
 
 <!-- SCREEN 1: TITLE -->
-
 <div class="screen active" id="s1">
   <div class="envelope-wrap">
     <div class="envelope">
+      <svg viewBox="0 0 100 72" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,0 100,0 50,40" fill="#f2c4b8"/>
+        <polygon points="0,72 100,72 50,36" fill="#d4837a" opacity="0.5"/>
+      </svg>
       <div class="envelope-heart">💌</div>
     </div>
   </div>
@@ -434,7 +427,6 @@ z-index: 200;
 </div>
 
 <!-- SCREEN 2: COUNTER -->
-
 <div class="screen" id="s2">
   <div class="counter-deco">🌸</div>
   <p class="counter-label">함께한 지 벌써</p>
@@ -450,7 +442,6 @@ z-index: 200;
 </div>
 
 <!-- SCREEN 3: LETTER P1 -->
-
 <div class="screen" id="s3">
   <div class="letter-page">
     <p class="letter-page-num">— 01 / 03 —</p>
@@ -470,7 +461,6 @@ z-index: 200;
 </div>
 
 <!-- SCREEN 4: LETTER P2 -->
-
 <div class="screen" id="s4">
   <div class="letter-page">
     <p class="letter-page-num">— 02 / 03 —</p>
@@ -490,7 +480,6 @@ z-index: 200;
 </div>
 
 <!-- SCREEN 5: LETTER P3 -->
-
 <div class="screen" id="s5">
   <div class="letter-page">
     <p class="letter-page-num">— 03 / 03 —</p>
@@ -510,7 +499,6 @@ z-index: 200;
 </div>
 
 <!-- SCREEN 6: ENDING -->
-
 <div class="screen" id="s6">
   <div class="ending-hearts">💕</div>
   <h2 class="ending-title">앙나뷰!! ❤️</h2>
@@ -521,8 +509,11 @@ z-index: 200;
 </div>
 
 <!-- NAV BUTTON -->
-
 <button class="nav-btn" id="navBtn" onclick="nextScreen()">→</button>
+
+
+
+
 
 <script>
 const TOTAL = 6;
@@ -635,6 +626,5 @@ document.addEventListener('touchend', e => {
   }
 });
 </script>
-
 </body>
 </html>
