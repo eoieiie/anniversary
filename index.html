@@ -110,9 +110,8 @@ margin-top: 8px;
 .title-label {
 font-family: ‘Nanum Myeongjo’, serif;
 font-size: 13px;
-letter-spacing: 4px;
+letter-spacing: 1px;
 color: var(–rose);
-text-transform: uppercase;
 margin-bottom: 14px;
 }
 .title-main {
@@ -130,8 +129,8 @@ margin-bottom: 48px;
 line-height: 1.8;
 }
 .btn-open {
-background: var(–deep);
-color: var(–cream);
+background: var(–deep) !important;
+color: var(–cream) !important;
 border: none;
 border-radius: 50px;
 padding: 16px 40px;
@@ -141,18 +140,10 @@ letter-spacing: 1px;
 cursor: pointer;
 box-shadow: 0 4px 20px rgba(122,62,58,0.3);
 transition: transform 0.2s, box-shadow 0.2s;
-position: relative;
-overflow: hidden;
+-webkit-appearance: none;
+appearance: none;
 }
 .btn-open:active { transform: scale(0.96); }
-.btn-open::after {
-content: ‘’;
-position: absolute; inset: 0;
-background: rgba(255,255,255,0.15);
-opacity: 0;
-transition: opacity 0.2s;
-}
-.btn-open:active::after { opacity: 1; }
 
 /* ── SCREEN 2: COUNTER ── */
 #s2 { gap: 0; text-align: center; }
@@ -313,8 +304,8 @@ font-weight: 700;
 margin-bottom: 48px;
 }
 .btn-replay {
-background: var(–deep);
-color: var(–cream);
+background: var(–deep) !important;
+color: var(–cream) !important;
 border: none;
 border-radius: 50px;
 padding: 16px 40px;
@@ -323,7 +314,8 @@ font-size: 15px;
 letter-spacing: 1px;
 cursor: pointer;
 box-shadow: 0 4px 20px rgba(122,62,58,0.3);
-transition: transform 0.2s, box-shadow 0.2s;
+-webkit-appearance: none;
+appearance: none;
 }
 .btn-replay:active { transform: scale(0.96); }
 
